@@ -14,19 +14,20 @@ pip install -r requirements --no-cache-dir
 ## Usage
 ### Help
 ```shell
-./bs_site_parser.py --help
-Usage: bs_site_parser.py [OPTIONS] WEB_SITE
+./site_parser.py --help
+Usage: site_parser.py [OPTIONS] WEB_SITE
 
   The parser is used to find all urls on a website with nested level 2.
 
 Options:
   -o, --output [STDOUT|FILE]  Stdout by default.
   --help                      Show this message and exit.
+
 ```
 
 ### Example
 ```shell
-./bs_site_parser.py https://vk.com -o file
+./site_parser.py https://vk.com -o file
 cat parsing_result.json
 {
     "https://vk.com": [
@@ -39,7 +40,7 @@ cat parsing_result.json
 ```
 
 ```shell
-./bs_site_parser.py https://ya.ru -o stdout
+./site_parser.py https://ya.ru -o stdout
 {
     "https://ya.ru": [
         "https://mail.yandex.ru"
