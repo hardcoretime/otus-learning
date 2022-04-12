@@ -11,9 +11,8 @@ class TestSiteParser(unittest.TestCase):
         self.test_urls = ['https://yandex.ru', 'https://mail.ru', 'https://rutube.ru']
 
     def test_is_url(self):
-        self.assertTrue(is_url(self.test_urls[0]))
-        self.assertTrue(is_url(self.test_urls[1]))
-        self.assertTrue(is_url(self.test_urls[2]))
+        for url in self.test_urls:
+            self.assertTrue(is_url(url))
 
     def test_get_url(self):
         with open(f'{os.path.dirname(__file__)}/index.html', 'r') as file:
