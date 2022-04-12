@@ -33,13 +33,15 @@ def main(web_site: str, output: str) -> None:
     total_result = dict()
     checked_urls = list()
 
-    web_site_urls = get_urls(web_site)
+    web_site_html_page = requests.get(web_site).text
+    web_site_urls = get_urls(web_site_html_page)
     total_result.update({web_site: web_site_urls})
     checked_urls.append(web_site)
 
     for url in web_site_urls:
         if url not in checked_urls:
-            included_urls = get_urls(url)
+            url_html_page = requests.get(url).text
+            included_urls = get_urls(url_html_page)
             total_result.update({url: included_urls})
             checked_urls.append(url)
 
@@ -57,10 +59,9 @@ def is_url(url: str) -> bool:
     return all([result.scheme, result.netloc])
 
 
-def get_urls(web_site: str) -> List[str]:
+def get_urls(html: str) -> List[str]:
     result = list()
-    response = requests.get(web_site)
-    soup = BeautifulSoup(response.text, 'html.parser')
+    soup = BeautifulSoup(html, 'html.parser')
 
     for a_tag in soup.find_all('a'):
         url = a_tag.get('href', None)

@@ -56,3 +56,9 @@ cat parsing_result.json
     ]
 }
 ```
+
+### Tests
+```shell
+cd site_parser
+python -m unittest tests/test_site_parser.py 
+```
